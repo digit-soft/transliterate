@@ -2,18 +2,10 @@
 
 declare(strict_types=1);
 
-namespace ElForastero\Transliterate;
+namespace DigitSoft\Transliterate;
 
 use Transliterator as IntlTransliterator;
 
-/**
- * Feel free to change it.
- * Either by pull request or forking.
- *
- * Class Transliterator
- *
- * @author Eugene Dzhumak <elforastero@ya.ru>
- */
 class Transliterator
 {
     /**
@@ -25,7 +17,7 @@ class Transliterator
      */
     private $map;
 
-    public function __construct(string $lang = null, string $map = null)
+    public function __construct(?string $lang = null, ?string $map = null)
     {
         $this->lang = $lang;
         $this->map = $map;

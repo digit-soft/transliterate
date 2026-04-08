@@ -2,13 +2,8 @@
 
 declare(strict_types=1);
 
-namespace ElForastero\Transliterate;
+namespace DigitSoft\Transliterate;
 
-/**
- * Class Transformer.
- *
- * @author Eugene Dzhumak <elforastero@ya.ru>
- */
 final class Transformer
 {
     /**
@@ -19,7 +14,7 @@ final class Transformer
     /**
      * Add the callback into the stack.
      *
-     * @param callable $callback
+     * @param  callable $callback
      */
     public static function register(callable $callback): void
     {
@@ -40,7 +35,7 @@ final class Transformer
      * Override closures stack.
      * For testing purposes only.
      *
-     * @param string[] $stack
+     * @param  string[] $stack
      */
     public static function override(array $stack): void
     {

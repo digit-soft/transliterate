@@ -1,14 +1,9 @@
 <?php
 
-namespace ElForastero\Transliterate;
+namespace DigitSoft\Transliterate;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
-/**
- * Class ServiceProvider.
- *
- * @author Eugene Dzhumak <elforastero@ya.ru>
- */
 class ServiceProvider extends BaseServiceProvider
 {
     protected $defer = true;
@@ -18,7 +13,7 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function boot()
     {
-        $configPath = __DIR__.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'transliterate.php';
+        $configPath = __DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'transliterate.php';
 
         $this->publishes([
             $configPath => config_path('transliterate.php'),
@@ -30,7 +25,7 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function register()
     {
-        $configPath = __DIR__.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'transliterate.php';
+        $configPath = __DIR__ . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'transliterate.php';
 
         $this->mergeConfigFrom($configPath, 'transliterate');
 

@@ -1,14 +1,9 @@
 <?php
 
-namespace ElForastero\Transliterate;
+namespace DigitSoft\Transliterate;
 
 use Illuminate\Support\Facades\Facade as BaseFacade;
 
-/**
- * Class Facade.
- *
- * @author Eugene Dzhumak <elforastero@ya.ru>
- */
 class Facade extends BaseFacade
 {
     /**

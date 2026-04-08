@@ -2,18 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ElForastero\Transliterate;
+namespace DigitSoft\Transliterate;
 
-/**
- * Class Map.
- *
- * @author Eugene Dzhumak <elforastero@ya.ru>
- */
 abstract class Map
 {
-    public const LANG_RU = 'ru';
-    public const LANG_UK = 'uk';
+    public const string LANG_RU = 'ru';
+    public const string LANG_UK = 'uk';
 
-    public const DEFAULT = 'common';
-    public const GOST_7_79_2000 = 'GOST_7.79.2000';
+    public const string DEFAULT = 'common';
+    public const string GOST_7_79_2000 = 'GOST_7.79.2000';
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace ElForastero\Transliterate\Tests;
+namespace DigitSoft\Transliterate\Tests;
 
-use ElForastero\Transliterate\Transformer;
+use DigitSoft\Transliterate\Transformer;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {

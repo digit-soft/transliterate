@@ -1,9 +1,9 @@
 <?php
 
-namespace ElForastero\Transliterate\Tests;
+namespace DigitSoft\Transliterate\Tests;
 
-use ElForastero\Transliterate\Transformer;
-use ElForastero\Transliterate\Transliterator;
+use DigitSoft\Transliterate\Transformer;
+use DigitSoft\Transliterate\Transliterator;
 
 class TransformersTest extends TestCase
 {
@@ -18,7 +18,7 @@ class TransformersTest extends TestCase
     }
 
     /**
-     * @covers \ElForastero\Transliterate\Transliterator::applyTransformers
+     * @covers \DigitSoft\Transliterate\Transliterator::applyTransformers
      */
     public function testTransformers()
     {

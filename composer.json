@@ -1,31 +1,30 @@
 {
-  "name": "elforastero/transliterate",
-  "description": "Transliteration package for laravel",
-  "version": "9.0.0",
+  "name": "digit-soft/transliterate",
+  "description": "Transliteration package for Laravel",
+  "version": "10.0.0",
   "type": "library",
   "license": "MIT",
   "authors": [
     {
-      "name": "Eugene Dzhumak",
-      "email": "elforastero@ya.ru",
-      "homepage": "https://elforastero.dev",
+      "name": "Digit",
+      "email": "digit.vova@gmail.com",
       "role": "Developer"
     }
   ],
   "autoload": {
     "psr-4": {
-      "ElForastero\\Transliterate\\": "src/"
+      "DigitSoft\\Transliterate\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "ElForastero\\Transliterate\\Tests\\": "tests/"
+      "DigitSoft\\Transliterate\\Tests\\": "tests/"
     }
   },
   "require": {
     "php": "^8.2",
     "ext-intl": "*",
-    "illuminate/support": "^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0"
+    "illuminate/support": "^9.0|^10.0|^11.0|^12.0|^13.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^9.0",
@@ -36,10 +35,10 @@
   "extra": {
     "laravel": {
       "providers": [
-        "ElForastero\\Transliterate\\ServiceProvider"
+        "DigitSoft\\Transliterate\\ServiceProvider"
       ],
       "aliases": {
-        "Transliterate": "ElForastero\\Transliterate\\Facade"
+        "Transliterate": "DigitSoft\\Transliterate\\Facade"
       }
     },
     "hooks": {

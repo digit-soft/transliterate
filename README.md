@@ -1,103 +1,86 @@
 ## Transliterate
 
-![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)
-![GitHub release](https://img.shields.io/github/release/elforastero/transliterate.svg)
-![Packagist](https://img.shields.io/packagist/dt/elforastero/transliterate.svg)
+Невеликий пакет для транслітерації кирилиці з можливістю створення власних карт транслітерації.
 
-Небольшой пакет для транслитерации кириллицы с возможностью создания своих собственных карт транслитерации.
+- [Попередньо встановлені карти](#Попередньо-встановлені-карти)
+- [Системні вимоги](#Системні-вимоги)
+- [Встановлення](#Встановлення)
+- [Конфігурація](#Конфігурація)
+- [Використання](#Використання)
+- [Створення карт транслітерації](#Створення-карт-транслітерації)
+- [Створення трансформерів](#Створення-трансформерів)
 
-![Code example](example.png)
+## Попередньо встановлені карти
 
-- [Предустановленные карты](#Предустановленные-карты)
-- [Системные требования](#Системные-требования)
-- [Установка](#Установка)
-- [Конфигурация](#Конфигурация)
-- [Использование](#Использование)
-- [Создание карт транслитерации](#Создание-карт-транслитерации)
-- [Создание трансформеров](#Создание-трансформеров)
-
-## Предустановленные карты
-
-- Русский
-    - Дефолтная
+- Українська
+    - Національна
+- Російська
+    - Дефолтна
     - ГОСТ 7.79 2000
-- Украинский
-    - Национальная
 
-
-## Системные требования
-- laravel >= 5.6
+## Системні вимоги
+- laravel >= 9.0
 - ext-intl
 
-## Установка
+## Встановлення
 ```
-> composer require elforastero/transliterate
+> composer require digit-soft/transliterate
 ```
 
-> ⚠️ Для Laravel v5 используйте ветку v2: `composer require elforastero/transliterate "^2.0"`
+Якщо ви хочете використовувати аліас, додайте його в масив `facades` в `app.php`.
 
-Laravel начиная с версии *5.5* не нуждается в дополнительной конфигурации благодаря механизму Package Discovery.
-
-Если вы не используте Package Discovery, необходимо зарегистрировать `Service Provider`, добавив его в массив `providers`, конфигурационного файла `app.php`.
+Рекомендую як аліас використовувати `Transliterate`, щоб уникнути конфліктів з класом `Transliterator` з розширення `Intl`.
 
 ```php
-ElForastero\Transliterate\ServiceProvider::class,
+'Transliterate' => DigitSoft\Transliterate\Facade::class,
 ```
 
-Если вы хотите использовать алиас, добавьте его в массив `facades` в `app.php`.
+## Конфігурація
 
-Рекомендую в качестве алиаса использовать `Transliterate`, чтобы избежать конфликтов с Transliterator классом из расширения Intl.
-
-```php
-'Transliterate' => ElForastero\Transliterate\Facade::class,
-```
-
-## Конфигурация
-
-Для копирования конфига `transliterate.php` в директорию `configs` выполните
+Для копіювання конфігу `transliterate.php` в директорію `configs` виконайте:
 
 ```
-> php artisan vendor:publish --provider="ElForastero\Transliterate\ServiceProvider"
+> php artisan vendor:publish --provider="DigitSoft\Transliterate\ServiceProvider"
 ```
 
-## Использование
+## Використання
 
-Вы можете использовать фасад для транслитерации строк.
+Ви можете використовувати фасад для транслітерації рядків.
 
 ```php
 use Transliterate;
 
-Transliterate::make('Двадцать тысяч льё под водой');
-// "Dvadcat tisyach lyo pod vodoy"
+Transliterate::make('Двадцять тисяч льє під водою');
+// "Dvadtsyat tysyach lie pid vodoiu"
 ```
 
-Альтернативная карта транслитерации может быть передана вторым параметром.
+Альтернативна карта транслітерації може бути передана другим параметром.
 
 ```php
-use ElForastero\Transliterate\Transliterator;
+use DigitSoft\Transliterate\Transliterator;
 
-$transliterator = new Transliterator(Map::LANG_RU, Map::GOST_7_79_2000);
-$transliterator->make('Двадцать тысяч льё под водой');
-// "Dvadcat` ty'syach l`yo pod vodoj"
+$transliterator = new Transliterator(Map::LANG_UK, Map::DEFAULT);
+$transliterator->make('Двадцять тисяч льє під водою');
+// "Dvadtsyat tysyach lie pid vodoiu"
 ```
 
-## Генерация URL
+## Генерація URL
 
-Метод `slugify` генерирует URL, убирая из строки все знаки препинания и заменяя пробелы на "-".
+Метод `slugify` генерує URL, видаляючи з рядка всі розділові знаки та замінюючи пробіли на "-".
 
 ```php
-Transliterate::slugify('Съешь еще этих мягких французских булок, да выпей чаю!');
-// sesh-eshhe-etih-myagkih-francuzskih-bulok-da-vipey-chayu
+Transliterate::slugify('Жебракують філософи при ґанку церкви в Гадячі, ще й шатро розклали!');
+// zhebrakuiut-filosofy-pry-ganku-tserkvy-v-hadyachi-shche-i-shatro-rozklaly
 ```
 
-## Создание карт транслитерации
+## Створення карт транслітерації
 
-Каждая карта представляет собой ассоциативный массив с символами подлежащими замене в качестве ключей, и значениями на которые они будут заменены.
+Кожна карта являє собою асоціативний масив із символами, що підлягають заміні, у якості ключів, та значеннями, на які вони будуть замінені.
 
-Карта создается в виде отдельного файла с возвращаемым массивом:
+Карта створюється у вигляді окремого файлу з масивом, що повертається:
 
 ```php
-// /resources/maps/ua/ukraine.php
+// /resources/maps/uk/ukrainian-v2.php
 
 return [
     'ї' => 'i',
@@ -106,43 +89,43 @@ return [
 ];
 ```
 
-Добавьте путь к созданной карте в массив `maps`, конфига `transliterate.php`:
+Додайте шлях до створеної карти в масив `maps` конфігу `transliterate.php`:
 
 ```php
 'ua' => [
-    'ukraine' => dirname(__DIR__) . '/resources/maps/ua/ukraine.php',
+    'ukraine' => dirname(__DIR__) . '/resources/maps/uk/ukrainian-v2.php',
 ]
 ```
 
-После этого карту можно использовать.
+Після цього карту можна використовувати.
 
 ```php
-$transliterator = new Transliterator('ua', 'ukraine');
+$transliterator = new Transliterator('ua', 'ukrainian-v2');
 $transliterator->make('Ваша транслітерація');
 ```
 
-## Создание трансформеров
+## Створення трансформерів
 
-Трансформеры - функции которые будут автоматически применены к результату транслитерации. Полезно если вам необходимо каждый раз производить одни и те же действия с транслитерируемой строкой. Регистрируется трансформер в массиве `transformers`.
+Трансформери - функції, які будуть автоматично застосовані до результату транслітерації. Корисно, якщо вам необхідно щоразу виконувати одні й ті самі дії з рядком, що транслітерується. Реєструється трансформер у масиві `transformers`.
 
-Например, можно автоматечески убирать конечные пробелы.
-
-```php
-ElForastero\Transliterate\Transformer::register(\Closure::fromCallable('trim')),
-```
-
-Или дополнительно приводить строки к нижнему регистру.
+Наприклад, можна автоматично прибирати кінцеві пробіли.
 
 ```php
-ElForastero\Transliterate\Transformer::register(\Closure::fromCallable('trim')),
-ElForastero\Transliterate\Transformer::register(\Closure::fromCallable('strtolower')),
+DigitSoft\Transliterate\Transformer::register(\Closure::fromCallable('trim')),
 ```
 
-> Будьте внимательны, поскольку трансформеры применяются при каждом вызове `Transliterator::make`.
+Або додатково приводити рядки до нижнього регістру.
 
-### Разработка
+```php
+DigitSoft\Transliterate\Transformer::register(\Closure::fromCallable('trim')),
+DigitSoft\Transliterate\Transformer::register(\Closure::fromCallable('strtolower')),
+```
 
-Для прогона PHPUnit тестов можно воспользоваться лежащим в корне Dockerfile:
+> Будьте уважні, оскільки трансформери застосовуються при кожному виклику `Transliterator::make`.
+
+### Розробка
+
+Для прогону PHPUnit тестів можна скористатися Dockerfile, що лежить у корені:
 
 ```bash
 docker-compose up --build

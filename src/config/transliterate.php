@@ -1,6 +1,6 @@
 <?php
 
-use ElForastero\Transliterate\Map;
+use DigitSoft\Transliterate\Map;
 
 /* @noinspection PhpVoidFunctionResultUsedInspection */
 return [
@@ -10,7 +10,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | This option specifies the transliteration map that will be used by default
-    | if no another one will be provided during Transliteration::make() call.
+    | if no another one is provided during Transliteration::make() call.
     |
     */
     'default_map' => Map::DEFAULT,
@@ -20,10 +20,10 @@ return [
     | Set default language
     |--------------------------------------------------------------------------
     | The language of transliterating text.
-    | Will be used unless no explicitly provided.
+    | Will be used unless not explicitly provided.
     |
     */
-    'default_lang' => Map::LANG_RU,
+    'default_lang' => Map::LANG_UK,
 
     /*
     |--------------------------------------------------------------------------
@@ -50,11 +50,11 @@ return [
     | the same actions on a result string every time.
     |
     | Since closures can't be serialized during "artisan config:cache" call,
-    | use "\ElForastero\Transliterate\Closure::register"
+    | use "\DigitSoft\Transliterate\Closure::register"
     |
     */
     'transformers' => [
-//        \ElForastero\Transliterate\Transformer::register(\Closure::fromCallable('trim'))
+        // \DigitSoft\Transliterate\Transformer::register(\Closure::fromCallable('trim'))
     ],
 
     /*

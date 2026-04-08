@@ -1,12 +1,12 @@
 <?php
 
-namespace ElForastero\Transliterate\Tests;
+namespace DigitSoft\Transliterate\Tests;
 
-use ElForastero\Transliterate\Transliterator;
-use ElForastero\Transliterate\Map;
+use DigitSoft\Transliterate\Transliterator;
+use DigitSoft\Transliterate\Map;
 
 /**
- * @covers \ElForastero\Transliterate\Transliterator
+ * @covers \DigitSoft\Transliterate\Transliterator
  */
 class TransliterationTest extends TestCase
 {
